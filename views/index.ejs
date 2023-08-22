@@ -1,0 +1,38 @@
+<%- include("partials/header.ejs") %>
+
+<body>
+    <% const week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] %>
+    <% const month = ["January","February","March","April","May","June","July","August","September","October","November","December"]; %>
+    <% const d = new Date() %>
+
+    <div class="main-container">
+        <div class="title-container">
+            <h1 class="day-info"><%= week[d.getDay()] %>, <%= month[d.getMonth()]%> <%= d.getDate()%> </h1>
+        </div>
+        <ul class="todo-list-container">
+            <% for(let i = 0; i<todoList.length; i++){ %>
+                 <li class="todo-item">
+                    <%= todoList[i] %>
+                    <div class="delete-btn-container">
+                        <form action="/deletetoDo/<%= i %>" method="POST" >
+                            <button class="delete-btn" type="submit">Delete</button>
+                        </form>
+                    </div>
+
+                 </li>
+             <%}%>
+    
+         </ul>
+         <div class="add-item">
+            <form action="/add" method="post">
+                <input class="todo-input" type="text" name="newItem" placeholder="New Item">
+                <button class="todo-btn" type="submit" name="list">+</button>
+            </form>
+         </div>
+
+    </div>
+
+
+
+
+<%- include("partials/footer.ejs") %>

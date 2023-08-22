@@ -1,0 +1,35 @@
+<%- include("partials/header.ejs") %>
+<body>
+<div class="main-container">
+    <div class="title-container">
+        <h1>Work List</h1>
+    </div>
+    
+    
+    <ul class="work-list-container">
+        <% for(let i = 0; i<workToDo.length; i++){ %>
+             <li class="work-item">
+                 <%= workToDo[i] %>
+                 <!-- This form gives the delete option which EJS i gets deleted -->
+                 <div class="delete-btn-container">
+                    <form action="/deleteWork/<%= i %>" method="POST" style="display: inline;">
+                        <button class="delete-btn" type="submit">Delete</button>
+                    </form>
+                 </div>
+
+             </li>
+         <%}%>
+    
+     </ul>
+     <div class="add-item">
+        <form action="/work" method="post">
+            <input class="work-input" type="text" name="workItem" placeholder="New Item">
+            <button class="work-btn" type="submit" name="list">+</button>
+        </form>
+     </div>
+
+</div>
+
+
+
+<%- include("partials/footer.ejs")%>
